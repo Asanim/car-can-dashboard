@@ -1,18 +1,122 @@
-# Car can dashboard. 
+# Car CAN Dashboard
 
-I am bad at naiming things I know... this is a repo to investigate can messages and communication on a car. 
+An open-source project to investigate CAN messages and communication for a 2020 Toyota Corolla. This repository provides tools and examples for receiving, decoding, and displaying vehicle data from the CAN bus. The project also experiments with Python and C++ libraries for handling CAN communication and decoding.
 
-the target car is a 2020 corolla. 
+---
 
-goals for this project are to:
-* examples for receiving and decoding can messages
-* providing a readout for key vehicle information 
-* experiment with python and c++ libraries 
+## Project Goals
 
-Key libraries: 
-https://python-obd.readthedocs.io/en/latest/
+1. **CAN Message Examples**  
+   - Provide examples for receiving and decoding CAN messages using Python and C++.
 
+2. **Vehicle Information Readout**  
+   - Develop a basic dashboard for displaying key vehicle data such as speed, steering angle, and RPM.
 
-Future work:
-* Consider esp32 development for a device: 
-https://core-electronics.com.au/rp2040-mcu-based-128inch-round-lcd-onboard-sensors.html
+3. **Library Exploration**  
+   - Experiment with various Python and C++ libraries for CAN communication and decoding.
+
+---
+
+## Future Work
+
+- **Embedded Development**  
+   - Explore the potential for using microcontrollers like the ESP32 for standalone CAN devices.  
+   - Example hardware for experimentation: [RP2040 MCU with 1.28" Round LCD](https://core-electronics.com.au/rp2040-mcu-based-128inch-round-lcd-onboard-sensors.html).
+
+---
+
+## Features
+
+- Examples of receiving raw CAN messages.
+- Decoding CAN messages into human-readable signals.
+- Visualization of decoded signals on a simple dashboard.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- A compatible CAN adapter (e.g., USB-to-CAN or Bluetooth-based CAN diagnostic device).
+- Linux (preferred for SocketCAN support) or Windows.
+- Python 3.x and/or a C++ compiler.
+
+### Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/car-can-dashboard.git
+   cd car-can-dashboard
+   ```
+
+2. **Install Python dependencies** (if using Python):  
+   ```bash
+   pip install python-can cantools
+   ```
+
+3. **Configure the CAN interface**:  
+   For Linux, bring up a SocketCAN interface (e.g., `can0`):
+   ```bash
+   sudo ip link set can0 up type can bitrate 500000
+   ```
+
+---
+
+## Usage
+
+### Receiving CAN Messages
+
+#### Python Example:
+Use `python-can` to receive raw CAN frames.
+```bash
+python examples/receive_can.py
+```
+
+#### C++ Example:
+Compile and run the C++ program to read messages.
+```bash
+mkdir build && cd build
+cmake ..
+make
+./receive_can
+```
+
+### Decoding CAN Messages
+
+Use `cantools` to decode raw CAN messages based on a DBC file:
+```bash
+python examples/decode_can.py --dbc path/to/dbc/file.dbc
+```
+
+---
+
+## Libraries Used
+
+- **[python-can](https://python-can.readthedocs.io/)**: For Python-based CAN communication.
+- **[cantools](https://github.com/eerimoq/cantools)**: For parsing and decoding DBC files in Python.
+- **SocketCAN (Linux)**: For native CAN support in Linux.
+- **C++ SocketCAN**: For low-level CAN communication using raw sockets.
+
+---
+
+## Contributing
+
+Contributions are welcome!  
+Feel free to open issues or submit pull requests with improvements, features, or bug fixes.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgments
+
+- Inspired by the need to understand and explore automotive CAN communication.  
+- Special thanks to the open-source community for providing incredible tools like `python-can` and `cantools`.
+
+---
+
+This README provides a clear overview of your project and helps others understand its purpose, setup, and future direction.
