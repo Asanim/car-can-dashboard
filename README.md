@@ -53,16 +53,15 @@ Fit for the Raspberry Pi. This library is designed to work with standard ELM327 
    ```
 
 2. **Install Python dependencies** (if using Python):  
-   ```bash
-   pip install python-can cantools
-   ```
 
-3. **Configure the CAN interface**:  
-   For Linux, bring up a SocketCAN interface (e.g., `can0`):
-   ```bash
-   sudo ip link set can0 up type can bitrate 500000
-   ```
+* **PyQt5**: Provides the GUI framework.
+* **pyqtgraph**: Handles graph plotting.
+* **qt-material**: Adds a modern theme to the PyQt application.
+* **python-obd**: Allows interaction with OBD-II adapters to fetch vehicle data.
 
+   ```bash
+   pip install -r requirements.txt
+   ```
 ---
 
 ## Usage
