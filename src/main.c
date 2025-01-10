@@ -24,8 +24,8 @@
    If you'd rather not, just change the below entries to strings with
    the config you want - ie #define EXAMPLE_WIFI_SSID "mywifissid"
 */
-#define EXAMPLE_ESP_WIFI_SSID      "Plantmech_5G"
-#define EXAMPLE_ESP_WIFI_PASS      "Plantmech01$"
+#define EXAMPLE_ESP_WIFI_SSID      "test"
+#define EXAMPLE_ESP_WIFI_PASS      "test"
 #define EXAMPLE_ESP_WIFI_CHANNEL   1
 #define EXAMPLE_MAX_STA_CONN       4
 

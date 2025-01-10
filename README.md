@@ -1,12 +1,25 @@
+## ESP32 1C MINI 1U 
 
-ported to use esp32 
-- freertos
-esp32 
-- esp-idf
+- FreeRTOS
+- ESP-IDF
 
-vs code commands
-ctrl+b : build
-ctrl+alt+u : upload to devic
+## VS Code Commands
+
+- `Ctrl+B`: Build
+- `Ctrl+Alt+U`: Upload to device
+
+## Documentation
+
+- [ESP32-MINI-1 Datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-mini-1_datasheet_en.pdf)
+
+## Features
+
+- WiFi
+- Bluetooth
+- LVGL
+- FreeRTOS
+
+
 
 # Car CAN Dashboard
 
