@@ -1,0 +1,66 @@
+Compiling .pio/build/esp32-c3-devkitc-02/src/main.c.o
+*** [.pio/build/esp32-c3-devkitc-02/src/do_main.cpp.o] Error 1
+src/CST816D.cpp: In member function 'void CST816D::begin()':
+src/CST816D.cpp:16:9: error: 'Wire' was not declared in this scope
+   16 |         Wire.begin(_sda, _scl);
+      |         ^~~~
+src/CST816D.cpp:20:9: error: 'Wire' was not declared in this scope
+   20 |         Wire.begin();
+      |         ^~~~
+src/CST816D.cpp:26:23: error: 'OUTPUT' was not declared in this scope
+   26 |         pinMode(_int, OUTPUT);
+      |                       ^~~~~~
+src/CST816D.cpp:26:9: error: 'pinMode' was not declared in this scope
+   26 |         pinMode(_int, OUTPUT);
+      |         ^~~~~~~
+src/CST816D.cpp:27:28: error: 'HIGH' was not declared in this scope
+   27 |         digitalWrite(_int, HIGH); //高电平
+      |                            ^~~~
+src/CST816D.cpp:27:9: error: 'digitalWrite' was not declared in this scope
+   27 |         digitalWrite(_int, HIGH); //高电平
+      |         ^~~~~~~~~~~~
+src/CST816D.cpp:28:9: error: 'delay' was not declared in this scope
+   28 |         delay(1);
+      |         ^~~~~
+src/CST816D.cpp:29:28: error: 'LOW' was not declared in this scope
+   29 |         digitalWrite(_int, LOW); //低电平
+      |                            ^~~
+src/CST816D.cpp:36:23: error: 'OUTPUT' was not declared in this scope
+   36 |         pinMode(_rst, OUTPUT);
+      |                       ^~~~~~
+src/CST816D.cpp:36:9: error: 'pinMode' was not declared in this scope
+   36 |         pinMode(_rst, OUTPUT);
+      |         ^~~~~~~
+src/CST816D.cpp:37:28: error: 'LOW' was not declared in this scope
+   37 |         digitalWrite(_rst, LOW);
+      |                            ^~~
+src/CST816D.cpp:37:9: error: 'digitalWrite' was not declared in this scope
+   37 |         digitalWrite(_rst, LOW);
+      |         ^~~~~~~~~~~~
+src/CST816D.cpp:38:9: error: 'delay' was not declared in this scope
+   38 |         delay(10);
+      |         ^~~~~
+src/CST816D.cpp:39:28: error: 'HIGH' was not declared in this scope
+   39 |         digitalWrite(_rst, HIGH);
+      |                            ^~~~
+src/CST816D.cpp: In member function 'uint8_t CST816D::i2c_read(uint8_t)':
+src/CST816D.cpp:74:9: error: 'Wire' was not declared in this scope
+   74 |         Wire.beginTransmission(I2C_ADDR_CST816D);
+      |         ^~~~
+src/CST816D.cpp:79:12: error: 'Wire' was not declared in this scope
+   79 |     while (Wire.available())
+      |            ^~~~
+src/CST816D.cpp: In member function 'uint8_t CST816D::i2c_read_continuous(uint8_t, uint8_t*, uint32_t)':
+src/CST816D.cpp:88:3: error: 'Wire' was not declared in this scope
+   88 |   Wire.beginTransmission(I2C_ADDR_CST816D);
+      |   ^~~~
+src/CST816D.cpp: In member function 'void CST816D::i2c_write(uint8_t, uint8_t)':
+src/CST816D.cpp:100:5: error: 'Wire' was not declared in this scope
+  100 |     Wire.beginTransmission(I2C_ADDR_CST816D);
+      |     ^~~~
+src/CST816D.cpp: In member function 'uint8_t CST816D::i2c_write_continuous(uint8_t, const uint8_t*, uint32_t)':
+src/CST816D.cpp:108:3: error: 'Wire' was not declared in this scope
+  108 |   Wire.beginTransmission(I2C_ADDR_CST816D);
+      |   ^~~~
+*** [.pio/build/esp32-c3-devkitc-02/src/CST816D.cpp.o] Error 1
+src/main.c:23:10: fatal error: lvgl.h: No such file or directory
