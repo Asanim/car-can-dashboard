@@ -1,66 +1,70 @@
-Compiling .pio/build/esp32-c3-devkitc-02/src/main.c.o
-*** [.pio/build/esp32-c3-devkitc-02/src/do_main.cpp.o] Error 1
-src/CST816D.cpp: In member function 'void CST816D::begin()':
-src/CST816D.cpp:16:9: error: 'Wire' was not declared in this scope
-   16 |         Wire.begin(_sda, _scl);
-      |         ^~~~
-src/CST816D.cpp:20:9: error: 'Wire' was not declared in this scope
-   20 |         Wire.begin();
-      |         ^~~~
-src/CST816D.cpp:26:23: error: 'OUTPUT' was not declared in this scope
-   26 |         pinMode(_int, OUTPUT);
-      |                       ^~~~~~
-src/CST816D.cpp:26:9: error: 'pinMode' was not declared in this scope
-   26 |         pinMode(_int, OUTPUT);
-      |         ^~~~~~~
-src/CST816D.cpp:27:28: error: 'HIGH' was not declared in this scope
-   27 |         digitalWrite(_int, HIGH); //高电平
-      |                            ^~~~
-src/CST816D.cpp:27:9: error: 'digitalWrite' was not declared in this scope
-   27 |         digitalWrite(_int, HIGH); //高电平
-      |         ^~~~~~~~~~~~
-src/CST816D.cpp:28:9: error: 'delay' was not declared in this scope
-   28 |         delay(1);
-      |         ^~~~~
-src/CST816D.cpp:29:28: error: 'LOW' was not declared in this scope
-   29 |         digitalWrite(_int, LOW); //低电平
-      |                            ^~~
-src/CST816D.cpp:36:23: error: 'OUTPUT' was not declared in this scope
-   36 |         pinMode(_rst, OUTPUT);
-      |                       ^~~~~~
-src/CST816D.cpp:36:9: error: 'pinMode' was not declared in this scope
-   36 |         pinMode(_rst, OUTPUT);
-      |         ^~~~~~~
-src/CST816D.cpp:37:28: error: 'LOW' was not declared in this scope
-   37 |         digitalWrite(_rst, LOW);
-      |                            ^~~
-src/CST816D.cpp:37:9: error: 'digitalWrite' was not declared in this scope
-   37 |         digitalWrite(_rst, LOW);
-      |         ^~~~~~~~~~~~
-src/CST816D.cpp:38:9: error: 'delay' was not declared in this scope
-   38 |         delay(10);
-      |         ^~~~~
-src/CST816D.cpp:39:28: error: 'HIGH' was not declared in this scope
-   39 |         digitalWrite(_rst, HIGH);
-      |                            ^~~~
-src/CST816D.cpp: In member function 'uint8_t CST816D::i2c_read(uint8_t)':
-src/CST816D.cpp:74:9: error: 'Wire' was not declared in this scope
-   74 |         Wire.beginTransmission(I2C_ADDR_CST816D);
-      |         ^~~~
-src/CST816D.cpp:79:12: error: 'Wire' was not declared in this scope
-   79 |     while (Wire.available())
-      |            ^~~~
-src/CST816D.cpp: In member function 'uint8_t CST816D::i2c_read_continuous(uint8_t, uint8_t*, uint32_t)':
-src/CST816D.cpp:88:3: error: 'Wire' was not declared in this scope
-   88 |   Wire.beginTransmission(I2C_ADDR_CST816D);
-      |   ^~~~
-src/CST816D.cpp: In member function 'void CST816D::i2c_write(uint8_t, uint8_t)':
-src/CST816D.cpp:100:5: error: 'Wire' was not declared in this scope
-  100 |     Wire.beginTransmission(I2C_ADDR_CST816D);
-      |     ^~~~
-src/CST816D.cpp: In member function 'uint8_t CST816D::i2c_write_continuous(uint8_t, const uint8_t*, uint32_t)':
-src/CST816D.cpp:108:3: error: 'Wire' was not declared in this scope
-  108 |   Wire.beginTransmission(I2C_ADDR_CST816D);
-      |   ^~~~
-*** [.pio/build/esp32-c3-devkitc-02/src/CST816D.cpp.o] Error 1
-src/main.c:23:10: fatal error: lvgl.h: No such file or directory
+Resolving esp32-c3-devkitc-02 dependencies...
+Library Manager: Installing lvgl/lvgl @ ^9.2.2
+Downloading 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
+Unpacking 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
+Library Manager: lvgl@9.2.2 has been installed!
+Library Manager: Installing git+https://github.com/lovyan03/LovyanGFX.git
+git version 2.43.0
+Cloning into '/home/sam/.platformio/.cache/tmp/pkg-installing-nl8l06k2'...
+
+Library Manager: LovyanGFX@1.2.0+sha.55a0f66 has been installed!
+Updating metadata for the vscode IDE...
+UserSideException: Processing esp32-c3-devkitc-02 (platform: espressif32; board: esp32-c3-devkitc-02; framework: espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-c3-devkitc-02.html
+PLATFORM: Espressif 32 (6.10.0) > Espressif ESP32-C3-DevKitC-02
+HARDWARE: ESP32C3 160MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - framework-espidf @ 3.50400.0 (5.4.0) 
+ - tool-cmake @ 3.16.4 
+ - tool-esptoolpy @ 1.40501.0 (4.5.1) 
+ - tool-ninja @ 1.7.1 
+ - tool-riscv32-esp-elf-gdb @ 12.1.0+20221002 
+ - tool-xtensa-esp-elf-gdb @ 12.1.0+20221002 
+ - toolchain-esp32ulp @ 1.23800.240113 (2.38.0) 
+ - toolchain-riscv32-esp @ 14.2.0+20241119
+Reading CMake configuration...
+-- Found Git: /usr/bin/git (found version "2.43.0") 
+-- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
+-- The C compiler identification is GNU 14.2.0
+-- Check for working C compiler: /home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc
+-- Check for working C compiler: /home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc -- broken
+-- Configuring incomplete, errors occurred!
+See also "/home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/CMakeFiles/CMakeOutput.log".
+See also "/home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/CMakeFiles/CMakeError.log".
+
+fatal: not a git repository (or any of the parent directories): .git
+CMake Error at /home/sam/.platformio/packages/tool-cmake/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:60 (message):
+  The C compiler
+
+    "/home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: /home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/CMakeFiles/CMakeTmp
+    
+    Run Build Command(s):/home/sam/.platformio/packages/tool-ninja/ninja cmTC_be77c && [1/2] Building C object CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj
+    FAILED: CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj 
+    /home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc   -march=rv32imc_zicsr_zifencei -o CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj   -c testCCompiler.c
+    Assembler messages:
+    Fatal error: can't create CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj: No such file or directory
+    ninja: build stopped: subcommand failed.
+    
+    
+
+  
+
+  CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+  /home/sam/.platformio/packages/framework-espidf/tools/cmake/project.cmake:564 (__project)
+  CMakeLists.txt:3 (project)
+
+
+
+========================== [FAILED] Took 1.50 seconds ==========================
+
+

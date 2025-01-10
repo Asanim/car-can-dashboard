@@ -10,6 +10,10 @@
             "includePath": [
                 "/home/sam/car-can-dashboard/include",
                 "/home/sam/car-can-dashboard/src",
+                "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl",
+                "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl/src",
+                "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl@9.2.2",
+                "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl@9.2.2/src",
                 "/home/sam/.platformio/packages/framework-espidf/components/riscv/include",
                 "/home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/config",
                 "/home/sam/.platformio/packages/framework-espidf/components/newlib/platform_include",
@@ -174,6 +178,10 @@
                 "path": [
                     "/home/sam/car-can-dashboard/include",
                     "/home/sam/car-can-dashboard/src",
+                    "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl",
+                    "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl/src",
+                    "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl@9.2.2",
+                    "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl@9.2.2/src",
                     "/home/sam/.platformio/packages/framework-espidf/components/riscv/include",
                     "/home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/config",
                     "/home/sam/.platformio/packages/framework-espidf/components/newlib/platform_include",
