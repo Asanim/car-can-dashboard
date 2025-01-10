@@ -1,3 +1,13 @@
+
+ported to use esp32 
+- freertos
+esp32 
+- esp-idf
+
+vs code commands
+ctrl+b : build
+ctrl+alt+u : upload to devic
+
 # Car CAN Dashboard
 
 An open-source project to investigate CAN messages and communication for a 2020 Toyota Corolla. This repository provides tools and examples for receiving, decoding, and displaying vehicle data from the CAN bus. The project also experiments with Python and C++ libraries for handling CAN communication and decoding.
