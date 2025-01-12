@@ -1,70 +1,29 @@
-Resolving esp32-c3-devkitc-02 dependencies...
-Library Manager: Installing lvgl/lvgl @ ^9.2.2
-Downloading 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
-Unpacking 0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
-Library Manager: lvgl@9.2.2 has been installed!
-Library Manager: Installing git+https://github.com/lovyan03/LovyanGFX.git
-git version 2.43.0
-Cloning into '/home/sam/.platformio/.cache/tmp/pkg-installing-nl8l06k2'...
-
-Library Manager: LovyanGFX@1.2.0+sha.55a0f66 has been installed!
-Updating metadata for the vscode IDE...
-UserSideException: Processing esp32-c3-devkitc-02 (platform: espressif32; board: esp32-c3-devkitc-02; framework: espidf)
---------------------------------------------------------------------------------
-Verbose mode can be enabled via `-v, --verbose` option
-CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-c3-devkitc-02.html
-PLATFORM: Espressif 32 (6.10.0) > Espressif ESP32-C3-DevKitC-02
-HARDWARE: ESP32C3 160MHz, 320KB RAM, 4MB Flash
-DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
-PACKAGES: 
- - framework-espidf @ 3.50400.0 (5.4.0) 
- - tool-cmake @ 3.16.4 
- - tool-esptoolpy @ 1.40501.0 (4.5.1) 
- - tool-ninja @ 1.7.1 
- - tool-riscv32-esp-elf-gdb @ 12.1.0+20221002 
- - tool-xtensa-esp-elf-gdb @ 12.1.0+20221002 
- - toolchain-esp32ulp @ 1.23800.240113 (2.38.0) 
- - toolchain-riscv32-esp @ 14.2.0+20241119
-Reading CMake configuration...
--- Found Git: /usr/bin/git (found version "2.43.0") 
--- git rev-parse returned 'fatal: not a git repository (or any of the parent directories): .git'
--- The C compiler identification is GNU 14.2.0
--- Check for working C compiler: /home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc
--- Check for working C compiler: /home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc -- broken
--- Configuring incomplete, errors occurred!
-See also "/home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/CMakeFiles/CMakeOutput.log".
-See also "/home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/CMakeFiles/CMakeError.log".
-
-fatal: not a git repository (or any of the parent directories): .git
-CMake Error at /home/sam/.platformio/packages/tool-cmake/share/cmake-3.16/Modules/CMakeTestCCompiler.cmake:60 (message):
-  The C compiler
-
-    "/home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc"
-
-  is not able to compile a simple test program.
-
-  It fails with the following output:
-
-    Change Dir: /home/sam/car-can-dashboard/.pio/build/esp32-c3-devkitc-02/CMakeFiles/CMakeTmp
-    
-    Run Build Command(s):/home/sam/.platformio/packages/tool-ninja/ninja cmTC_be77c && [1/2] Building C object CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj
-    FAILED: CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj 
-    /home/sam/.platformio/packages/toolchain-riscv32-esp/bin/riscv32-esp-elf-gcc   -march=rv32imc_zicsr_zifencei -o CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj   -c testCCompiler.c
-    Assembler messages:
-    Fatal error: can't create CMakeFiles/cmTC_be77c.dir/testCCompiler.c.obj: No such file or directory
-    ninja: build stopped: subcommand failed.
-    
-    
-
-  
-
-  CMake will not be able to correctly generate this project.
-Call Stack (most recent call first):
-  /home/sam/.platformio/packages/framework-espidf/tools/cmake/project.cmake:564 (__project)
-  CMakeLists.txt:3 (project)
-
-
-
-========================== [FAILED] Took 1.50 seconds ==========================
-
-
+src/do_main.cpp: In lambda function:
+src/do_main.cpp:17:25: error: 'digitalRead' was not declared in this scope
+   17 |                 int i = digitalRead(9);
+      |                         ^~~~~~~~~~~
+src/do_main.cpp:18:17: error: 'delay' was not declared in this scope
+   18 |                 delay(20);
+      |                 ^~~~~
+src/do_main.cpp:23:21: error: 'Serial' was not declared in this scope
+   23 |                     Serial.println("now_is_auto_play is changed to " + String(now_is_auto_play));
+      |                     ^~~~~~
+src/do_main.cpp:23:72: error: 'String' was not declared in this scope
+   23 |                     Serial.println("now_is_auto_play is changed to " + String(now_is_auto_play));
+      |                                                                        ^~~~~~
+src/do_main.cpp: In function 'void ui_mian()':
+src/do_main.cpp:12:5: error: 'xTaskCreatePinnedToCore' was not declared in this scope
+   12 |     xTaskCreatePinnedToCore(
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+src/do_main.cpp: In lambda function:
+src/do_main.cpp:39:21: error: 'delay' was not declared in this scope
+   39 |                     delay(1000);
+      |                     ^~~~~
+src/do_main.cpp:44:21: error: 'delay' was not declared in this scope
+   44 |                     delay(2000);
+      |                     ^~~~~
+src/do_main.cpp: In function 'void auto_play()':
+src/do_main.cpp:32:5: error: 'xTaskCreatePinnedToCore' was not declared in this scope
+   32 |     xTaskCreatePinnedToCore(
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+*** [.pio/build/esp32-c3-devkitc-02/src/do_main.cpp.o] Error 1

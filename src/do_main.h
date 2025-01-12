@@ -9,5 +9,5 @@
 //set up the now_auto play
 extern int now_is_auto_play;
 
-void ui_mian(void);
+void ui_main(void);
 void auto_play(void);

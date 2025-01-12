@@ -25,7 +25,7 @@
 #include "LovyanGFX.hpp"
 #include "Ticker.h"
 #include "CST816D.h"
-#include "do_mian.h"
+#include "do_main.h"
 
 #define I2C_SDA 4
 #define I2C_SCL 5

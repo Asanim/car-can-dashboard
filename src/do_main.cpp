@@ -1,4 +1,4 @@
-#include "do_mian.h"
+#include "do_main.h"
 int now_is_auto_play = 1;
 void ui_mian(void)
 {
