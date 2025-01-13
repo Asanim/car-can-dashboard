@@ -6,6 +6,26 @@ Currently using arduino
 
 Fit for the Raspberry Pi. This library is designed to work with standard ELM327 OBD-II adapters.
 
+## 1.28 inch
+
+ESP32 development board, standard 1.28-inch IPS TFT screen and resistor TP, support one-key automatic download, provide LVGL demo and Arduino examples.
+
+### Download link:
+[ESP32 module 1.28inch_ESP32-2424S012.zip](http://pan.jczn1688.com/directlink/1/ESP32%20module/1.28inch_ESP32-2424S012.zip)
+
+### Note:
+- The power supply voltage should not be lower than 5V.
+- It is recommended to use a USB-A to C charger.
+
+[Aliexpress link](https://de.aliexpress.com/item/1005005907739887.html)
+
+### SDK download:
+[ESP32 module 1.28inch_ESP32-2424S012.zip](http://pan.jczn1688.com/directlink/1/ESP32%20module/1.28inch_ESP32-2424S012.zip)
+
+![screen](images/1.JPG)
+![back](images/2.JPG)
+
+
 ---
 
 ## Project Goals
