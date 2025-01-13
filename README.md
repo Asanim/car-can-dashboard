@@ -10,6 +10,15 @@ Fit for the Raspberry Pi. This library is designed to work with standard ELM327 
 
 ESP32 development board, standard 1.28-inch IPS TFT screen and resistor TP, support one-key automatic download, provide LVGL demo and Arduino examples.
 
+The ESP32-C3-MINI-1U WiFi and Bluetooth chip is the latest generation of Espressif products. It has a
+SingleCore32-bitMCU,whichSupportingIEEE802.11b/g/n(2.4GHzWiFi)andBluetooth®5(LE).
+ESP32-C3-MINI-1U series of SoCs is an ultra-low-power and highly-integrated MCU-based solution
+that supports 2.4 GHz Wi-Fi and Bluetooth ® Low Energy (Bluetooth LE). The block diagram of
+ESP32-C3-MINI-1Uisshownbelow.32­bitRISC­Vsingle­coreprocessorwithafour-stagepipelinethat
+operatesatupto160MHz.Storagecapacitiesensuredby400KBofSRAM(16KBforcache)and384KB
+of ROM onthe chip, and SPI, Dual SPI, Quad SPI, and QPIinterfaces that allow connection to external
+flash
+
 ### Download link:
 [ESP32 module 1.28inch_ESP32-2424S012.zip](http://pan.jczn1688.com/directlink/1/ESP32%20module/1.28inch_ESP32-2424S012.zip)
 
