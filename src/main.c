@@ -164,6 +164,20 @@ void bt_init(void)
     esp_bt_gap_set_pin(ESP_BT_PIN_TYPE_FIXED, 4, (esp_bt_pin_code_t) {1, 2, 3, 4});
 }
 
+void wifi_task(void *pvParameters)
+{
+    ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
+    wifi_init_softap();
+    vTaskDelete(NULL);
+}
+
+void bt_task(void *pvParameters)
+{
+    ESP_LOGI(TAG, "Initializing Bluetooth");
+    bt_init();
+    vTaskDelete(NULL);
+}
+
 void app_main(void)
 {
     // Initialize NVS
@@ -174,9 +188,7 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(ret);
 
-    ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
-    wifi_init_softap();
-
-    ESP_LOGI(TAG, "Initializing Bluetooth");
-    bt_init();
+    // Create tasks for WiFi and Bluetooth initialization
+    xTaskCreate(wifi_task, "wifi_task", 4096, NULL, 5, NULL);
+    xTaskCreate(bt_task, "bt_task", 4096, NULL, 5, NULL);
 }
