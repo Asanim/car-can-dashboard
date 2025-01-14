@@ -20,7 +20,6 @@
 #include "esp_bt_defs.h"
 #include "esp_gap_bt_api.h"
 #include "esp_spp_api.h"
-#include "GC9A01.h"
 
 #define EXAMPLE_ESP_WIFI_SSID      "test"
 #define EXAMPLE_ESP_WIFI_PASS      "test"
@@ -161,7 +160,8 @@ void bt_init(void)
     // Set default parameters for Secure Simple Pairing
     esp_bt_io_cap_t io_cap = ESP_BT_IO_CAP_IO;
     esp_bt_gap_set_security_param(ESP_BT_SP_IOCAP_MODE, &io_cap, sizeof(uint8_t));
-    esp_bt_gap_set_pin(ESP_BT_PIN_TYPE_FIXED, 4, (esp_bt_pin_code_t) {1, 2, 3, 4});
+    esp_bt_pin_code_t pin_code = {1, 2, 3, 4};
+    esp_bt_gap_set_pin(ESP_BT_PIN_TYPE_FIXED, 4, pin_code);
 }
 
 void wifi_task(void *pvParameters)
