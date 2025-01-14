@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "do_main.h": "c"
+        "do_main.h": "c",
+        "lv_demos.h": "c"
     }
 }

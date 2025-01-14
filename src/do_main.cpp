@@ -25,7 +25,7 @@ void ui_mian(void)
                 if (i == 0)
                 {
                     now_is_auto_play = !now_is_auto_play;
-                    ESP_LOGI("AUTO_PLAY", "now_is_auto_play is changed to %d", now_is_auto_play);
+                    ESP_LOGI("AUTO_PLAY", "now_is_auto-_play is changed to %d", now_is_auto_play);
                 }
             }
         },

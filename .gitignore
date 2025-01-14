@@ -1,4 +1,4 @@
 backdate*
 resources/
 .pio
-output
+console_output

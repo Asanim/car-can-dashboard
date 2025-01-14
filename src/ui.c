@@ -109,12 +109,12 @@ const lv_img_dsc_t *watch_back_9__array[2] = {&ui_img_watch_back_9_1_png, &ui_im
 const lv_img_dsc_t *watch_back_3__array[1] = {&ui_img_watch_back_3_0_png};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
-#if LV_COLOR_DEPTH != 16
-#error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
-#endif
-#if LV_COLOR_16_SWAP != 1
-#error "LV_COLOR_16_SWAP should be 1 to match SquareLine Studio's settings"
-#endif
+// #if LV_COLOR_DEPTH != 16
+// #error "LV_COLOR_DEPTH should be 16bit to match SquareLine Studio's settings"
+// #endif
+// #if LV_COLOR_16_SWAP != 1
+// #error "LV_COLOR_16_SWAP should be 1 to match SquareLine Studio's settings"
+// #endif
 
 ///////////////////// ANIMATIONS ////////////////////
 void A0logo_in_Animation(lv_obj_t *TargetObject, int delay)

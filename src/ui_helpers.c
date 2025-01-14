@@ -1,4 +1,3 @@
-
 #include "ui_helpers.h"
 
 void _ui_bar_set_property(lv_obj_t * target, int id, int val)
@@ -15,7 +14,6 @@ void _ui_basic_set_property(lv_obj_t * target, int id, int val)
     if(id == _UI_BASIC_PROPERTY_HEIGHT) lv_obj_set_height(target, val);
 }
 
-
 void _ui_dropdown_set_property(lv_obj_t * target, int id, int val)
 {
     if(id == _UI_DROPDOWN_PROPERTY_SELECTED) lv_dropdown_set_selected(target, val);
@@ -31,7 +29,6 @@ void _ui_label_set_property(lv_obj_t * target, int id, char * val)
     if(id == _UI_LABEL_PROPERTY_TEXT) lv_label_set_text(target, val);
 }
 
-
 void _ui_roller_set_property(lv_obj_t * target, int id, int val)
 {
     if(id == _UI_ROLLER_PROPERTY_SELECTED_WITH_ANIM) lv_roller_set_selected(target, val, LV_ANIM_ON);
@@ -44,7 +41,6 @@ void _ui_slider_set_property(lv_obj_t * target, int id, int val)
     if(id == _UI_SLIDER_PROPERTY_VALUE) lv_slider_set_value(target, val, LV_ANIM_OFF);
 }
 
-
 void _ui_screen_change(lv_obj_t * target, lv_scr_load_anim_t fademode, int spd, int delay)
 {
     lv_scr_load_anim(target, fademode, spd, delay, false);
@@ -54,7 +50,7 @@ void _ui_arc_increment(lv_obj_t * target, int val)
 {
     int old = lv_arc_get_value(target);
     lv_arc_set_value(target, old + val);
-    lv_event_send(target, LV_EVENT_VALUE_CHANGED, 0);
+    lv_event_send(target, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
 void _ui_bar_increment(lv_obj_t * target, int val, int anm)
@@ -67,7 +63,7 @@ void _ui_slider_increment(lv_obj_t * target, int val, int anm)
 {
     int old = lv_slider_get_value(target);
     lv_slider_set_value(target, old + val, anm);
-    lv_event_send(target, LV_EVENT_VALUE_CHANGED, 0);
+    lv_event_send(target, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
 void _ui_keyboard_set_target(lv_obj_t * keyboard, lv_obj_t * textarea)
@@ -84,6 +80,7 @@ void _ui_flag_modify(lv_obj_t * target, int32_t flag, int value)
     else if(value == _UI_MODIFY_FLAG_ADD) lv_obj_add_flag(target, flag);
     else lv_obj_clear_flag(target, flag);
 }
+
 void _ui_state_modify(lv_obj_t * target, int32_t state, int value)
 {
     if(value == _UI_MODIFY_STATE_TOGGLE) {
@@ -101,7 +98,7 @@ void _ui_opacity_set(lv_obj_t * target, int val)
 
 void _ui_anim_callback_free_user_data(lv_anim_t * a)
 {
-    lv_mem_free(a->user_data);
+    lv_free(a->user_data);
     a->user_data = NULL;
 }
 
@@ -217,10 +214,9 @@ void _ui_slider_set_text_value(lv_obj_t * trg, lv_obj_t * src, char * prefix, ch
     lv_snprintf(buf, sizeof(buf), "%s%d%s", prefix, (int)lv_slider_get_value(src), postfix);
     lv_label_set_text(trg, buf);
 }
+
 void _ui_checked_set_text_value(lv_obj_t * trg, lv_obj_t * src, char * txt_on, char * txt_off)
 {
     if(lv_obj_has_state(src, LV_STATE_CHECKED)) lv_label_set_text(trg, txt_on);
     else lv_label_set_text(trg, txt_off);
 }
-
-
