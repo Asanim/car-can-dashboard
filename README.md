@@ -1,3 +1,8 @@
+
+The ESP32-C3 only supports BLE
+Bluetooth Low Energy (BLE) instead of Bluetooth Classic, 
+
+
 ## ESP32 1C MINI 1U 
 
 - FreeRTOS

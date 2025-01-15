@@ -175,8 +175,6 @@
                 "/home/sam/.platformio/packages/framework-espidf/components/rt/include",
                 "/home/sam/.platformio/packages/framework-espidf/components/spiffs/include",
                 "/home/sam/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
-                "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl",
-                "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl/src",
                 ""
             ],
             "browse": {
@@ -349,8 +347,6 @@
                     "/home/sam/.platformio/packages/framework-espidf/components/rt/include",
                     "/home/sam/.platformio/packages/framework-espidf/components/spiffs/include",
                     "/home/sam/.platformio/packages/framework-espidf/components/wifi_provisioning/include",
-                    "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl",
-                    "/home/sam/car-can-dashboard/.pio/libdeps/esp32-c3-devkitc-02/lvgl/src",
                     ""
                 ]
             },

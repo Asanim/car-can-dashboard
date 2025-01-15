@@ -1,2 +1,3 @@
 // This is a placeholder for the sdkconfig file.
 // You can generate this file using the `idf.py menuconfig` command.
+CONFIG_BT_BLE_42_FEATURES_SUPPORTED=y 

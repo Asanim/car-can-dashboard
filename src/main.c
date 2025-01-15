@@ -18,8 +18,10 @@
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
 #include "esp_bt_defs.h"
-#include "esp_gap_bt_api.h"
-#include "esp_spp_api.h"
+#include "esp_gap_ble_api.h"
+#include "esp_gattc_api.h"
+#include "esp_gatts_api.h"
+#include "esp_gatt_common_api.h"
 
 #define EXAMPLE_ESP_WIFI_SSID      "test"
 #define EXAMPLE_ESP_WIFI_PASS      "test"
@@ -82,36 +84,30 @@ void wifi_init_softap(void)
              EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS, EXAMPLE_ESP_WIFI_CHANNEL);
 }
 
-static void bt_event_handler(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param)
+static void ble_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
 {
     switch (event) {
-    case ESP_BT_GAP_AUTH_CMPL_EVT:
-        if (param->auth_cmpl.stat == ESP_BT_STATUS_SUCCESS) {
-            ESP_LOGI(TAG, "authentication success: %s", param->auth_cmpl.device_name);
-            ESP_LOG_BUFFER_HEX(TAG, param->auth_cmpl.bda, ESP_BD_ADDR_LEN);
+    case ESP_GAP_BLE_ADV_START_COMPLETE_EVT:
+        if (param->adv_start_cmpl.status == ESP_BT_STATUS_SUCCESS) {
+            ESP_LOGI(TAG, "Advertising started successfully");
         } else {
-            ESP_LOGE(TAG, "authentication failed, status:%d", param->auth_cmpl.stat);
+            ESP_LOGE(TAG, "Failed to start advertising, error status = %d", param->adv_start_cmpl.status);
         }
         break;
-    case ESP_BT_GAP_PIN_REQ_EVT:
-        ESP_LOGI(TAG, "ESP_BT_GAP_PIN_REQ_EVT, min_16_digit:%d", param->pin_req.min_16_digit);
-        if (param->pin_req.min_16_digit) {
-            ESP_LOGI(TAG, "Input pin code: 0000 0000 0000 0000");
-            esp_bt_pin_code_t pin_code = {0};
-            esp_bt_gap_pin_reply(param->pin_req.bda, true, 16, pin_code);
+    case ESP_GAP_BLE_ADV_STOP_COMPLETE_EVT:
+        if (param->adv_stop_cmpl.status == ESP_BT_STATUS_SUCCESS) {
+            ESP_LOGI(TAG, "Advertising stopped successfully");
         } else {
-            ESP_LOGI(TAG, "Input pin code: 1234");
-            esp_bt_pin_code_t pin_code = {1, 2, 3, 4};
-            esp_bt_gap_pin_reply(param->pin_req.bda, true, 4, pin_code);
+            ESP_LOGE(TAG, "Failed to stop advertising, error status = %d", param->adv_stop_cmpl.status);
         }
         break;
     default:
-        ESP_LOGI(TAG, "event: %d", event);
+        ESP_LOGI(TAG, "BLE event: %d", event);
         break;
     }
 }
 
-void bt_init(void)
+void ble_init(void)
 {
     esp_err_t ret;
 
@@ -131,7 +127,7 @@ void bt_init(void)
         return;
     }
 
-    ret = esp_bt_controller_enable(ESP_BT_MODE_CLASSIC_BT);
+    ret = esp_bt_controller_enable(ESP_BT_MODE_BLE);
     if (ret) {
         ESP_LOGE(TAG, "%s enable controller failed: %s\n", __func__, esp_err_to_name(ret));
         return;
@@ -151,17 +147,28 @@ void bt_init(void)
     }
 
     // Register GAP callback
-    ret = esp_bt_gap_register_callback(bt_event_handler);
+    ret = esp_ble_gap_register_callback(ble_event_handler);
     if (ret) {
         ESP_LOGE(TAG, "%s gap register failed: %s\n", __func__, esp_err_to_name(ret));
         return;
     }
 
-    // Set default parameters for Secure Simple Pairing
-    esp_bt_io_cap_t io_cap = ESP_BT_IO_CAP_IO;
-    esp_bt_gap_set_security_param(ESP_BT_SP_IOCAP_MODE, &io_cap, sizeof(uint8_t));
-    esp_bt_pin_code_t pin_code = {1, 2, 3, 4};
-    esp_bt_gap_set_pin(ESP_BT_PIN_TYPE_FIXED, 4, pin_code);
+    // Set BLE advertising parameters
+    esp_ble_adv_params_t adv_params = {
+        .adv_int_min = 0x20,
+        .adv_int_max = 0x40,
+        .adv_type = ADV_TYPE_IND,
+        .own_addr_type = BLE_ADDR_TYPE_PUBLIC,
+        .channel_map = ADV_CHNL_ALL,
+        .adv_filter_policy = ADV_FILTER_ALLOW_SCAN_ANY_CON_ANY,
+    };
+
+    // Start advertising
+    ret = esp_ble_gap_start_advertising(&adv_params);
+    if (ret) {
+        ESP_LOGE(TAG, "Failed to start advertising, error status = %s", esp_err_to_name(ret));
+        return;
+    }
 }
 
 void wifi_task(void *pvParameters)
@@ -171,10 +178,10 @@ void wifi_task(void *pvParameters)
     vTaskDelete(NULL);
 }
 
-void bt_task(void *pvParameters)
+void ble_task(void *pvParameters)
 {
-    ESP_LOGI(TAG, "Initializing Bluetooth");
-    bt_init();
+    ESP_LOGI(TAG, "Initializing BLE");
+    ble_init();
     vTaskDelete(NULL);
 }
 
@@ -188,7 +195,7 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(ret);
 
-    // Create tasks for WiFi and Bluetooth initialization
+    // Create tasks for WiFi and BLE initialization
     xTaskCreate(wifi_task, "wifi_task", 4096, NULL, 5, NULL);
-    xTaskCreate(bt_task, "bt_task", 4096, NULL, 5, NULL);
+    xTaskCreate(ble_task, "ble_task", 4096, NULL, 5, NULL);
 }
