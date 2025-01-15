@@ -1,4 +1,4 @@
-/*  WiFi softAP and Bluetooth Example
+/*  WiFi softAP, Bluetooth, and AWS IoT Example
 
    This example code is in the Public Domain (or CC0 licensed, at your option.)
 
@@ -22,6 +22,7 @@
 #include "esp_gattc_api.h"
 #include "esp_gatts_api.h"
 #include "esp_gatt_common_api.h"
+#include "aws_iot_mqtt_client_interface.h"
 
 #define EXAMPLE_ESP_WIFI_SSID      "test"
 #define EXAMPLE_ESP_WIFI_PASS      "test"
@@ -171,6 +172,75 @@ void ble_init(void)
     }
 }
 
+void aws_iot_task(void *param)
+{
+    IoT_Error_t rc = FAILURE;
+
+    AWS_IoT_Client client;
+    IoT_Client_Init_Params mqttInitParams = iotClientInitParamsDefault;
+    IoT_Client_Connect_Params connectParams = iotClientConnectParamsDefault;
+
+    mqttInitParams.enableAutoReconnect = false; // We enable this later below
+    mqttInitParams.pHostURL = "your-aws-iot-endpoint";
+    mqttInitParams.port = 8883;
+
+    mqttInitParams.pRootCALocation = "path/to/rootCA.pem";
+    mqttInitParams.pDeviceCertLocation = "path/to/certificate.pem.crt";
+    mqttInitParams.pDevicePrivateKeyLocation = "path/to/private.pem.key";
+
+    mqttInitParams.mqttCommandTimeout_ms = 20000;
+    mqttInitParams.tlsHandshakeTimeout_ms = 5000;
+    mqttInitParams.isSSLHostnameVerify = true;
+    mqttInitParams.disconnectHandler = NULL;
+    mqttInitParams.disconnectHandlerData = NULL;
+
+    rc = aws_iot_mqtt_init(&client, &mqttInitParams);
+    if (SUCCESS != rc) {
+        ESP_LOGE(TAG, "aws_iot_mqtt_init returned error : %d ", rc);
+        vTaskDelete(NULL);
+    }
+
+    connectParams.keepAliveIntervalInSec = 10;
+    connectParams.isCleanSession = true;
+    connectParams.MQTTVersion = MQTT_3_1_1;
+    connectParams.pClientID = "your-client-id";
+    connectParams.clientIDLen = (uint16_t) strlen("your-client-id");
+    connectParams.isWillMsgPresent = false;
+
+    ESP_LOGI(TAG, "Connecting to AWS IoT...");
+    rc = aws_iot_mqtt_connect(&client, &connectParams);
+    if (SUCCESS != rc) {
+        ESP_LOGE(TAG, "Error(%d) connecting to %s:%d", rc, mqttInitParams.pHostURL, mqttInitParams.port);
+        vTaskDelete(NULL);
+    }
+
+    /*
+     * Enable Auto Reconnect functionality. Minimum and Maximum time of Exponential backoff are set in aws_iot_config.h
+     *  #AWS_IOT_MQTT_MIN_RECONNECT_WAIT_INTERVAL
+     *  #AWS_IOT_MQTT_MAX_RECONNECT_WAIT_INTERVAL
+     */
+    rc = aws_iot_mqtt_autoreconnect_set_status(&client, true);
+    if (SUCCESS != rc) {
+        ESP_LOGE(TAG, "Unable to set Auto Reconnect to true - %d", rc);
+        vTaskDelete(NULL);
+    }
+
+    while ((NETWORK_ATTEMPTING_RECONNECT == rc || NETWORK_RECONNECTED == rc || SUCCESS == rc)) {
+        // Max time the yield function will wait for read messages
+        rc = aws_iot_mqtt_yield(&client, 100);
+        if (NETWORK_ATTEMPTING_RECONNECT == rc) {
+            // If the client is attempting to reconnect, skip the rest of the loop
+            continue;
+        }
+
+        ESP_LOGI(TAG, "AWS IoT connected successfully");
+        vTaskDelay(1000 / portTICK_RATE_MS);
+    }
+
+    ESP_LOGE(TAG, "An error occurred in the main loop.");
+    vTaskDelete(NULL);
+}
+
 void wifi_task(void *pvParameters)
 {
     ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
@@ -195,7 +265,8 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(ret);
 
-    // Create tasks for WiFi and BLE initialization
+    // Create tasks for WiFi, BLE, and AWS IoT initialization
     xTaskCreate(wifi_task, "wifi_task", 4096, NULL, 5, NULL);
     xTaskCreate(ble_task, "ble_task", 4096, NULL, 5, NULL);
+    xTaskCreate(aws_iot_task, "aws_iot_task", 8192, NULL, 5, NULL);
 }

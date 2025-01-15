@@ -1,4 +1,11 @@
 
+
+### AWS IoT 
+
+https://docs.aws.amazon.com/freertos/latest/userguide/getting_started_espressif.html
+
+
+
 The ESP32-C3 only supports BLE
 Bluetooth Low Energy (BLE) instead of Bluetooth Classic, 
 
